@@ -1,0 +1,46 @@
+PHARMACEUTICAL COMPLAINT REPORT
+
+Date: 2026-07-20
+Complaint Reference: (To be assigned by manufacturer)
+Received Via: Email + Phone
+
+REPORTER INFORMATION:
+Name: Dr. Anand Kapoor
+Organization: Apollo Pharmacy Chain (Regional Quality Manager)
+Contact: a.kapoor@apollorx.com | +91 98765 43210
+
+PRODUCT INFORMATION:
+Product Name: Amoxicillin Trihydrate Capsules 500mg
+Batch Number: AMX-2026-0198
+Manufacturer: PharmaCore API & FDF Ltd.
+Date of Manufacture: January 2026
+Date of Expiry: December 2028
+Pack Size: 10 x 10 capsules per box
+
+COMPLAINT DESCRIPTION:
+During dispensing, our pharmacist at the Hyderabad branch noticed that the capsules from Batch AMX-2026-0198 appeared to have a distinctly different color than the standard product — the capsule body was light pink instead of the expected white.
+
+Upon further investigation across 3 additional boxes from the same batch purchased at our Pune and Bangalore branches, we identified the same anomaly. The capsule contents appeared brownish-orange rather than white/off-white powder, suggesting possible cross-contamination with another product.
+
+We sent 5 capsules to our empaneled external laboratory (Analytical Labs India, Hyderabad) for rapid testing. The preliminary HPLC analysis showed the presence of what appears to be a secondary compound peak that should not be present in a pure Amoxicillin formulation.
+
+SEVERITY ASSESSMENT: CRITICAL
+This is a potential cross-contamination incident. Amoxicillin is a beta-lactam antibiotic. Any contamination with non-beta-lactam compounds (or vice versa) poses a serious patient safety risk, including potential allergic reactions and therapeutic failure.
+
+ACTIONS TAKEN BY REPORTER:
+- All stock of Batch AMX-2026-0198 has been quarantined at all Apollo branches.
+- Approximately 2,400 boxes are held pending your investigation outcome.
+- External lab test report is available upon request.
+- No adverse patient outcomes have been reported to date, but we are monitoring.
+
+REGULATORY NOTE:
+Given the nature of this complaint, Apollo Pharmacy management believes this may require regulatory reporting to CDSCO under Schedule M compliance. We request your confirmation within 48 hours.
+
+REQUESTED FROM MANUFACTURER:
+1. Immediate acknowledgment and complaint number
+2. Investigation report within 10 working days
+3. COA and in-process control data for Batch AMX-2026-0198
+4. Disposition guidance for quarantined stock
+5. Confirmation of regulatory reporting obligation
+
+This complaint is classified as CRITICAL / PATIENT SAFETY by our internal QMS.

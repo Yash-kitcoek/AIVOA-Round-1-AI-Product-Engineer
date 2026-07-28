@@ -1,0 +1,50 @@
+CUSTOMER COMPLAINT – LABELING ERROR
+Received: 2026-07-22 | Channel: Written complaint letter
+
+From:
+Mr. Rajesh Mehta
+Chief Pharmacist
+HealthFirst Retail Pharmacy
+123, MG Road, Bengaluru – 560 001
+
+To:
+Customer Quality Department
+NovaChem Pharmaceuticals Ltd.
+
+RE: MISLABELING COMPLAINT – Atorvastatin Calcium 20mg vs 40mg Tablets
+
+Dear Quality Team,
+
+I am writing to bring to your urgent attention a serious labeling discrepancy discovered at our pharmacy.
+
+COMPLAINT DETAILS:
+Product: Atorvastatin Calcium Tablets
+Expected Strength: 20mg
+Batch Number: ATV-2026-0277
+Secondary Batch Found Inside: ATV-2026-0291 (40mg strength)
+
+INCIDENT DESCRIPTION:
+On 22nd July 2026, one of our pharmacists was dispensing Atorvastatin 20mg tablets for a patient when she noticed that the tablets inside the blister strip appeared slightly larger than normal. Upon closer inspection, the foil on the reverse side was printed "ATORVA 40" (indicating 40mg strength), while the outer carton clearly read "ATORVASTATIN TABLETS IP 20mg."
+
+We immediately checked 5 additional boxes from the same batch from our stock (all purchased from NovaChem's authorized distributor, HealthCare Distribution Services, Invoice No. HD-2026-7821). All 5 boxes showed the same discrepancy — 20mg carton containing 40mg blister strips.
+
+POTENTIAL PATIENT IMPACT:
+Atorvastatin 40mg administered to patients prescribed 20mg represents a 2x overdose of a statin medication. While Atorvastatin is generally well-tolerated, excessive dosing can increase the risk of myopathy, rhabdomyolysis, and liver toxicity. We have identified two patients who may have received the incorrect dose before this error was caught. Both patients have been contacted and referred to their physician.
+
+IMMEDIATE ACTIONS BY OUR PHARMACY:
+1. All stock of Batch ATV-2026-0277 quarantined immediately.
+2. Prescribing physicians notified for the two potentially affected patients.
+3. Adverse event report filed with state pharmacovigilance centre.
+
+FORMAL REQUEST:
+1. Acknowledge this complaint and provide a complaint number by end of day.
+2. Investigate the root cause — most likely a line changeover or packaging mix-up.
+3. Confirm if other batches or customers are affected.
+4. Initiate recall/field alert if investigation confirms systemic failure.
+5. Provide written response within 5 working days.
+
+This is a patient safety matter and we expect it to be treated with the highest urgency.
+
+Yours sincerely,
+Rajesh Mehta
+Chief Pharmacist | HealthFirst Retail Pharmacy

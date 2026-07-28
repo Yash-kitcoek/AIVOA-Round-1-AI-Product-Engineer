@@ -5,4 +5,6 @@ pydantic==2.10.4
 python-multipart==0.0.20
 langgraph==0.2.60
 langchain-groq==0.2.3
+langchain-core==0.3.28
 pypdf==5.1.0
+python-dotenv==1.0.1

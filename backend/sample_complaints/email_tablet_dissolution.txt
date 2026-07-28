@@ -1,0 +1,42 @@
+From: quality@meditrade-distributors.com
+To: complaints@pharmaco-api.com
+Date: 2026-07-15
+Subject: URGENT – Dissolution Failure – Metformin HCl 500mg Tablets – Batch MT-2026-0342
+
+Dear Quality Assurance Team,
+
+I am writing to formally notify you of a significant product quality complaint received from one of our hospital clients, City General Hospital, Mumbai.
+
+COMPLAINT DETAILS:
+Product: Metformin HCl 500mg Tablets (Immediate Release)
+Batch Number: MT-2026-0342
+Manufacturing Date: March 2026
+Expiry Date: February 2029
+Quantity Affected: 200 blister packs (10 x 10)
+
+DESCRIPTION OF COMPLAINT:
+Our pharmacist at City General Hospital reported that during routine in-house quality verification testing, the dissolution profile of the above batch deviated significantly from the labeled specification. The dissolution at 45 minutes was measured at approximately 52%, whereas the specification requires NLT 80% (Q).
+
+The pharmacist also noted visible cracks along the tablet surface in approximately 15% of the sampled tablets, which may indicate compression issues during manufacturing.
+
+IMPACT:
+Metformin is a critical first-line treatment for Type 2 Diabetes. Subtherapeutic dissolution may result in inadequate blood glucose control in diabetic patients, potentially leading to hyperglycemia and associated complications.
+
+SAMPLES:
+We have retained 20 tablets from the affected blister packs and can courier them to your QC laboratory upon your request. Two opened blister packs with the patient's name have been photographed and the images are attached.
+
+REQUESTED ACTION:
+1. Immediate investigation into Batch MT-2026-0342
+2. Disposition decision on remaining stock held at our warehouse (approx. 1500 packs)
+3. Written response within 5 working days per our quality agreement
+
+We are also requesting your batch release documentation, BMR extracts, and dissolution data for this batch.
+
+Please acknowledge receipt of this complaint and provide a case reference number.
+
+Regards,
+Ms. Priya Nair
+Head of Quality Assurance
+MediTrade Distributors Pvt. Ltd.
+Mumbai – 400 001
+Tel: +91 22 4567 8900
