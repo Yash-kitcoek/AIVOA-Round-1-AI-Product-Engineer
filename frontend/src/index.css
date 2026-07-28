@@ -1,0 +1,36 @@
+:root {
+  color-scheme: light;
+  font-family: 'Inter', Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #162033;
+  background: #f4f7fb;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f7fb; }
+button, input, textarea { font: inherit; }
+
+.app-shell { max-width: 1400px; margin: 0 auto; padding: 24px; display: grid; gap: 20px; }
+.hero-card, .panel { background: white; border-radius: 16px; padding: 20px; box-shadow: 0 10px 32px rgba(11, 29, 57, 0.08); }
+.hero-card { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.26em; color: #4f6fef; font-size: 0.78rem; font-weight: 700; }
+.stats-grid { display: flex; gap: 12px; }
+.stats-grid > div { background: #eef3ff; padding: 12px 14px; border-radius: 12px; min-width: 110px; display: flex; flex-direction: column; }
+.grid-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; }
+.lower-grid { grid-template-columns: 1.15fr 0.85fr; }
+.stack, .list-stack { display: flex; flex-direction: column; gap: 12px; }
+.field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.field-label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 0.95rem; }
+input, textarea { border: 1px solid #dce3f0; border-radius: 10px; padding: 10px 12px; background: #fcfdff; }
+textarea { resize: vertical; }
+button { background: #244dff; color: white; border: none; border-radius: 10px; padding: 10px 14px; cursor: pointer; }
+button:disabled { opacity: 0.7; cursor: wait; }
+.summary-card, .record-card { background: #f8fbff; border: 1px solid #e7eefb; border-radius: 12px; padding: 12px; }
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.pill { display: inline-block; padding: 4px 8px; border-radius: 999px; background: #dce8ff; font-size: 0.8rem; font-weight: 700; }
+.warning { background: #ffe3db; color: #a14a16; }
+.muted { color: #5f6d86; }
+.error { color: #b42318; }
+.record-header { display: flex; justify-content: space-between; align-items: center; }
+@media (max-width: 900px) { .grid-layout, .lower-grid, .field-grid { grid-template-columns: 1fr; } .hero-card { flex-direction: column; align-items: flex-start; } }
