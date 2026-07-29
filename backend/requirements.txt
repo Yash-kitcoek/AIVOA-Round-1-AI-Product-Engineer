@@ -8,3 +8,4 @@ langchain-groq==0.2.3
 langchain-core==0.3.29
 pypdf==5.1.0
 python-dotenv==1.0.1
+psycopg[binary]>=3.2

@@ -1,56 +1,173 @@
+import json
 import os
-import re
-from typing import TypedDict
+from typing import Any, TypedDict
+
+from dotenv import load_dotenv
+from groq import BadRequestError, Groq
 from langgraph.graph import END, StateGraph
+
+load_dotenv()
+
+api_key = os.getenv("GROQ_API_KEY")
+if not api_key:
+    raise RuntimeError(
+        "GROQ_API_KEY is missing. Add it to backend/.env, then restart Uvicorn."
+    )
+
+client = Groq(api_key=api_key)
+# Groq has decommissioned gemma2-9b-it. The assignment explicitly permits
+# Llama 3.3 70B as the context-capable production fallback.
+MODEL_NAME = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+FALLBACK_MODEL = "llama-3.3-70b-versatile"
+
+COMPLAINT_FIELDS = [
+    "complaint_source",
+    "customer_name",
+    "product_name",
+    "product_strength",
+    "batch_number",
+    "affected_quantity",
+    "manufacturing_date",
+    "expiry_date",
+    "originating_site",
+    "impacted_materials",
+    "complaint_type",
+    "country",
+    "received_date",
+    "description",
+    "source_text",
+]
+
+SYSTEM_PROMPT = """
+You are AIVOA Copilot, an AI assistant for pharmaceutical customer complaint intake.
+
+Read the customer's latest message and update the complaint record.
+Use current_form_values to preserve existing values. Change only fields explicitly
+corrected or provided in the latest input.
+
+Never invent facts. Use an empty string for unavailable data.
+For contamination, foreign matter, serious adverse event, or patient-safety risk,
+use Critical severity. For product defects such as discoloration, cracks, leaks,
+or broken blisters, use Major unless evidence indicates Critical.
+
+Return valid JSON only with exactly this shape:
+
+{
+  "complaint": {
+    "complaint_source": "",
+    "customer_name": "",
+    "product_name": "",
+    "product_strength": "",
+    "batch_number": "",
+    "affected_quantity": "",
+    "manufacturing_date": "",
+    "expiry_date": "",
+    "originating_site": "",
+    "impacted_materials": "",
+    "complaint_type": "",
+    "country": "",
+    "received_date": "",
+    "description": "",
+    "source_text": ""
+  },
+  "assessment": {
+    "risk_level": "Minor",
+    "risk_score": 0,
+    "rationale": "",
+    "missing_information": [],
+    "duplicate_explanation": "",
+    "root_cause_hypotheses": [],
+    "capa_recommendation": "",
+    "human_review_required": true
+  }
+}
+"""
 
 
 class AgentState(TypedDict, total=False):
     text: str
-    complaint: dict
-    assessment: dict
-    existing: list[dict]
+    current_draft: dict[str, Any]
+    existing: list[dict[str, Any]]
+    complaint: dict[str, Any]
+    assessment: dict[str, Any]
 
 
-def extract(state: AgentState):
-    text = state["text"]
-    lower = text.lower()
-    def match(pattern):
-        found = re.search(pattern, text, re.I)
-        return found.group(1).strip(" .,:;") if found else ""
-    product = match(r"(?:in|product|medicine)\s+([A-Za-z][A-Za-z0-9 -]+?(?:capsules?|tablets?|api)(?:\s+\d+\s*(?:mg|g))?)") or match(r"(?:product|medicine)\s*[:#-]?\s*([A-Za-z0-9][A-Za-z0-9 -]{2,40})")
-    batch = match(r"(?:batch|lot)\s*(?:no\.?|number)?\s*[:#-]?\s*([A-Za-z0-9-]{3,30})")
-    categories = {"Packaging": ["pack", "blister", "seal", "carton"], "Quality defect": ["broken", "discolor", "particle", "contamin", "crack"], "Adverse event": ["hospital", "adverse", "injury", "reaction"], "Labelling": ["label", "leaflet", "expiry", "misprint"], "Delivery": ["delivery", "shipment", "transport"]}
-    complaint_type = next((name for name, words in categories.items() if any(w in lower for w in words)), "Product quality")
-    strength = match(r"(\d+(?:\.\d+)?\s*(?:mg|g|%|iu))")
-    quantity = match(r"(?:quantity|affected)\s*(?:is|:)?\s*(\d+(?:\.\d+)?\s*(?:capsules?|tablets?|kg|drums?))")
-    mfg = match(r"(?:manufacturing|mfg)\s*date\s*(?:is|:)?\s*([A-Za-z]+\s+\d{4}|\d{1,2}\s+[A-Za-z]+\s+\d{4})")
-    expiry = match(r"(?:expiry|exp)\s*date\s*(?:is|:)?\s*([A-Za-z]+\s+\d{4}|\d{1,2}\s+[A-Za-z]+\s+\d{4})")
-    source = "Pharmacy" if "pharmacy" in lower else "Email" if "email" in lower else "Customer"
-    material = "HDPE Drum" if "hdpe" in lower else "Primary Packaging (Bottle)" if "bottle" in lower else ""
-    return {"complaint": {"complaint_source": source, "product_name": product, "product_strength": strength, "batch_number": batch, "affected_quantity": quantity, "manufacturing_date": mfg, "expiry_date": expiry, "originating_site": "Manufacturing", "impacted_materials": material, "complaint_type": complaint_type, "country": match(r"(?:country|market)\s*[:#-]?\s*([A-Za-z ]{3,30})"), "customer_name": match(r"(?:from|customer|distributor|pharmacy)\s*[:#-]?\s*([A-Za-z][A-Za-z .&-]{2,40})"), "received_date": "", "description": text[:1200], "source_text": text}}
+def create_completion(model: str, state: AgentState):
+    return client.chat.completions.create(
+        model=model,
+        temperature=0,
+        response_format={"type": "json_object"},
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {
+                "role": "user",
+                "content": json.dumps(
+                    {
+                        "current_form_values": state.get("current_draft", {}),
+                        "duplicate_candidates": state.get("existing", []),
+                        "new_input": state["text"],
+                    }
+                ),
+            },
+        ],
+    )
 
 
-def assess(state: AgentState):
-    text = state["text"].lower()
-    high_terms = ["hospital", "death", "serious", "contamin", "foreign particle", "adverse reaction", "recall"]
-    medium_terms = ["broken", "crack", "leak", "missing", "wrong label", "discolor"]
-    hits = [w for w in high_terms if w in text]
-    score = 80 if hits else (55 if any(w in text for w in medium_terms) else 25)
-    level = "Critical" if score >= 80 else "Major" if score >= 50 else "Minor"
-    c = state["complaint"]
-    missing = [label for key, label in [("product_name", "product name"), ("batch_number", "batch / lot number"), ("customer_name", "customer / reporter"), ("country", "country / market")] if not c.get(key)]
-    rationale = "Potential patient-safety signal requires expedited Quality review." if hits else "Risk based on reported product defect and available complaint details."
-    return {"assessment": {"risk_level": level, "risk_score": score, "rationale": rationale, "safety_signals": hits or ["No explicit patient harm reported"], "missing_information": missing, "duplicate_candidates": state.get("existing", [])[:3], "root_cause_hypotheses": ["Review batch manufacturing and in-process controls", "Inspect packaging-line parameters and retain samples"], "capa_recommendation": "Quarantine related retain samples, open an investigation, assess distribution impact, and document effectiveness checks.", "human_review_required": True, "model": "langgraph-rule-based-demo"}}
+def groq_intake(state: AgentState) -> dict[str, Any]:
+    try:
+        response = create_completion(MODEL_NAME, state)
+    except BadRequestError as error:
+        # A configured legacy Gemma name should not make the application fail.
+        if "decommissioned" not in str(error).lower() or MODEL_NAME == FALLBACK_MODEL:
+            raise
+        response = create_completion(FALLBACK_MODEL, state)
+
+    result = json.loads(response.choices[0].message.content)
+
+    return {
+        "complaint": result.get("complaint", {}),
+        "assessment": result.get("assessment", {}),
+    }
 
 
-def build_graph():
-    graph = StateGraph(AgentState)
-    graph.add_node("extract", extract)
-    graph.add_node("assess", assess)
-    graph.set_entry_point("extract")
-    graph.add_edge("extract", "assess")
-    graph.add_edge("assess", END)
-    return graph.compile()
+def normalize_result(state: AgentState) -> dict[str, Any]:
+    current = state.get("current_draft", {})
+    raw_complaint = state.get("complaint", {})
+    raw_assessment = state.get("assessment", {})
+
+    # Preserve earlier form values when the Copilot returns blanks.
+    complaint = {
+        field: raw_complaint.get(field) or current.get(field, "")
+        for field in COMPLAINT_FIELDS
+    }
+
+    assessment = {
+        "risk_level": raw_assessment.get("risk_level", "Minor"),
+        "risk_score": int(raw_assessment.get("risk_score", 0) or 0),
+        "rationale": raw_assessment.get("rationale", ""),
+        "missing_information": raw_assessment.get("missing_information", []),
+        "duplicate_explanation": raw_assessment.get(
+            "duplicate_explanation", "No likely duplicate identified."
+        ),
+        "root_cause_hypotheses": raw_assessment.get(
+            "root_cause_hypotheses", []
+        ),
+        "capa_recommendation": raw_assessment.get(
+            "capa_recommendation",
+            "Route to Quality Assurance for review and investigation.",
+        ),
+        "human_review_required": True,
+    }
+
+    return {"complaint": complaint, "assessment": assessment}
 
 
-complaint_graph = build_graph()
+workflow = StateGraph(AgentState)
+workflow.add_node("groq_intake", groq_intake)
+workflow.add_node("normalize_result", normalize_result)
+
+workflow.set_entry_point("groq_intake")
+workflow.add_edge("groq_intake", "normalize_result")
+workflow.add_edge("normalize_result", END)
+
+complaint_graph = workflow.compile()

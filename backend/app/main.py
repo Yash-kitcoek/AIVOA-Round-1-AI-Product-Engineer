@@ -7,7 +7,7 @@ from sqlalchemy import inspect, text
 from sqlalchemy.orm import Session
 from pypdf import PdfReader
 from io import BytesIO
-from .agent import complaint_graph
+from .agent import MODEL_NAME, complaint_graph
 from .database import Base, engine, get_db
 from .models import Complaint
 from .schemas import AnalysisRequest, ComplaintCreate, ComplaintOut
@@ -32,14 +32,18 @@ def to_out(row: Complaint):
 
 
 @app.get("/health")
-def health(): return {"status": "ok", "agent": "LangGraph", "model": "gemma2-9b-it (configure GROQ_API_KEY)"}
+def health(): return {"status": "ok", "agent": "LangGraph", "model": MODEL_NAME}
 
 @app.post("/api/complaints/analyze")
 def analyze(payload: AnalysisRequest, db: Session = Depends(get_db)):
     prior = db.query(Complaint).order_by(Complaint.created_at.desc()).limit(20).all()
     words = set(payload.text.lower().split())
     existing = [{"complaint_number": c.complaint_number, "product_name": c.product_name, "similarity": min(95, int(100 * len(words & set(c.description.lower().split())) / max(1, len(words))))} for c in prior]
-    result = complaint_graph.invoke({"text": payload.text, "existing": [x for x in existing if x["similarity"] >= 18]})
+    result = complaint_graph.invoke({
+        "text": payload.text,
+        "current_draft": payload.current_draft.model_dump() if payload.current_draft else {},
+        "existing": [x for x in existing if x["similarity"] >= 18],
+    })
     if payload.current_draft:
         prior_draft = payload.current_draft.model_dump()
         # Chat corrections only overwrite values the latest message explicitly supplied.
