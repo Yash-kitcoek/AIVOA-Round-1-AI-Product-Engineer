@@ -1,0 +1,5 @@
+import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
+export type Draft={product_name:string;batch_number:string;complaint_type:string;country:string;customer_name:string;received_date:string;description:string;source_text:string};
+const empty:Draft={product_name:'',batch_number:'',complaint_type:'',country:'',customer_name:'',received_date:new Date().toISOString().slice(0,10),description:'',source_text:''};
+const intake=createSlice({name:'intake',initialState:{draft:empty,assessment:null as any,loading:false,error:''},reducers:{setDraft:(s,a:PayloadAction<Partial<Draft>>)=>{s.draft={...s.draft,...a.payload}},setAssessment:(s,a)=>{s.assessment=a.payload},setLoading:(s,a)=>{s.loading=a.payload},setError:(s,a)=>{s.error=a.payload},reset:(s)=>{s.draft=empty;s.assessment=null;s.error=''}}});
+export const {setDraft,setAssessment,setLoading,setError,reset}=intake.actions; export const store=configureStore({reducer:{intake:intake.reducer}}); export type RootState=ReturnType<typeof store.getState>;
