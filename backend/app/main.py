@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 from fastapi import Depends, FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import inspect, text
 from sqlalchemy.orm import Session
 from pypdf import PdfReader
 from io import BytesIO
@@ -12,6 +13,14 @@ from .models import Complaint
 from .schemas import AnalysisRequest, ComplaintCreate, ComplaintOut
 
 Base.metadata.create_all(bind=engine)
+
+# Lightweight development migration so an existing local demo database accepts
+# the newly introduced intake fields. Production deployments use Alembic.
+with engine.begin() as connection:
+    columns = {column["name"] for column in inspect(connection).get_columns("complaints")}
+    for name in ("complaint_source", "product_strength", "affected_quantity", "manufacturing_date", "expiry_date", "originating_site", "impacted_materials"):
+        if name not in columns:
+            connection.execute(text(f"ALTER TABLE complaints ADD COLUMN {name} VARCHAR(255) DEFAULT ''"))
 app = FastAPI(title="AIVOA Complaint Copilot", version="1.0.0")
 app.add_middleware(CORSMiddleware, allow_origins=os.getenv("CORS_ORIGINS", "http://localhost:5173").split(","), allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
@@ -31,6 +40,10 @@ def analyze(payload: AnalysisRequest, db: Session = Depends(get_db)):
     words = set(payload.text.lower().split())
     existing = [{"complaint_number": c.complaint_number, "product_name": c.product_name, "similarity": min(95, int(100 * len(words & set(c.description.lower().split())) / max(1, len(words))))} for c in prior]
     result = complaint_graph.invoke({"text": payload.text, "existing": [x for x in existing if x["similarity"] >= 18]})
+    if payload.current_draft:
+        prior_draft = payload.current_draft.model_dump()
+        # Chat corrections only overwrite values the latest message explicitly supplied.
+        result["complaint"] = {key: value or prior_draft.get(key, "") for key, value in result["complaint"].items()}
     return {"complaint": result["complaint"], "assessment": result["assessment"]}
 
 @app.post("/api/documents/extract")

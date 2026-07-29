@@ -17,11 +17,17 @@ def extract(state: AgentState):
     def match(pattern):
         found = re.search(pattern, text, re.I)
         return found.group(1).strip(" .,:;") if found else ""
-    product = match(r"(?:product|medicine|tablet|capsule)\s*[:#-]?\s*([A-Za-z0-9][A-Za-z0-9 -]{2,40})")
+    product = match(r"(?:in|product|medicine)\s+([A-Za-z][A-Za-z0-9 -]+?(?:capsules?|tablets?|api)(?:\s+\d+\s*(?:mg|g))?)") or match(r"(?:product|medicine)\s*[:#-]?\s*([A-Za-z0-9][A-Za-z0-9 -]{2,40})")
     batch = match(r"(?:batch|lot)\s*(?:no\.?|number)?\s*[:#-]?\s*([A-Za-z0-9-]{3,30})")
     categories = {"Packaging": ["pack", "blister", "seal", "carton"], "Quality defect": ["broken", "discolor", "particle", "contamin", "crack"], "Adverse event": ["hospital", "adverse", "injury", "reaction"], "Labelling": ["label", "leaflet", "expiry", "misprint"], "Delivery": ["delivery", "shipment", "transport"]}
     complaint_type = next((name for name, words in categories.items() if any(w in lower for w in words)), "Product quality")
-    return {"complaint": {"product_name": product, "batch_number": batch, "complaint_type": complaint_type, "country": match(r"(?:country|market)\s*[:#-]?\s*([A-Za-z ]{3,30})"), "customer_name": match(r"(?:from|customer|distributor)\s*[:#-]?\s*([A-Za-z][A-Za-z .&-]{2,40})"), "received_date": "", "description": text[:1200], "source_text": text}}
+    strength = match(r"(\d+(?:\.\d+)?\s*(?:mg|g|%|iu))")
+    quantity = match(r"(?:quantity|affected)\s*(?:is|:)?\s*(\d+(?:\.\d+)?\s*(?:capsules?|tablets?|kg|drums?))")
+    mfg = match(r"(?:manufacturing|mfg)\s*date\s*(?:is|:)?\s*([A-Za-z]+\s+\d{4}|\d{1,2}\s+[A-Za-z]+\s+\d{4})")
+    expiry = match(r"(?:expiry|exp)\s*date\s*(?:is|:)?\s*([A-Za-z]+\s+\d{4}|\d{1,2}\s+[A-Za-z]+\s+\d{4})")
+    source = "Pharmacy" if "pharmacy" in lower else "Email" if "email" in lower else "Customer"
+    material = "HDPE Drum" if "hdpe" in lower else "Primary Packaging (Bottle)" if "bottle" in lower else ""
+    return {"complaint": {"complaint_source": source, "product_name": product, "product_strength": strength, "batch_number": batch, "affected_quantity": quantity, "manufacturing_date": mfg, "expiry_date": expiry, "originating_site": "Manufacturing", "impacted_materials": material, "complaint_type": complaint_type, "country": match(r"(?:country|market)\s*[:#-]?\s*([A-Za-z ]{3,30})"), "customer_name": match(r"(?:from|customer|distributor|pharmacy)\s*[:#-]?\s*([A-Za-z][A-Za-z .&-]{2,40})"), "received_date": "", "description": text[:1200], "source_text": text}}
 
 
 def assess(state: AgentState):

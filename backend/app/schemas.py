@@ -3,11 +3,18 @@ from pydantic import BaseModel, Field
 
 
 class ComplaintDraft(BaseModel):
+    complaint_source: str = ""
+    customer_name: str = ""
     product_name: str = ""
+    product_strength: str = ""
     batch_number: str = ""
+    affected_quantity: str = ""
+    manufacturing_date: str = ""
+    expiry_date: str = ""
+    originating_site: str = ""
+    impacted_materials: str = ""
     complaint_type: str = ""
     country: str = ""
-    customer_name: str = ""
     received_date: str = ""
     description: str = ""
     source_text: str = ""
@@ -15,6 +22,7 @@ class ComplaintDraft(BaseModel):
 
 class AnalysisRequest(BaseModel):
     text: str = Field(min_length=10, max_length=30000)
+    current_draft: ComplaintDraft | None = None
 
 
 class ComplaintCreate(ComplaintDraft):
