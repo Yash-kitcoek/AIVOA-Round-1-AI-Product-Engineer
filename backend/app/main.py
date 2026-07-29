@@ -58,7 +58,7 @@ _NEW_COLUMNS = {
     "regulatory_reportable": "BOOLEAN DEFAULT FALSE",
     "investigation_notes": "TEXT DEFAULT ''",
     "assigned_to": "VARCHAR(255) DEFAULT ''",
-    "updated_at": "DATETIME",
+    "updated_at": "TIMESTAMP",
     "risk_score": "INTEGER DEFAULT 0",
     "ai_assessment": "TEXT DEFAULT '{}'",
 }
