@@ -16,14 +16,15 @@ export const fetchStats = createAsyncThunk('complaints/fetchStats', async () => 
   return res.json();
 });
 
+/** Accepts a FormData object with optional `text` and `uploaded_file` fields. */
 export const analyzeComplaint = createAsyncThunk('complaints/analyze', async (formData) => {
   const res = await fetch(`${API_BASE}/analyze-complaint`, {
     method: 'POST',
     body: formData,
   });
   if (!res.ok) {
-    const errorText = await res.text();
-    throw new Error(errorText || 'Unable to analyze complaint');
+    const err = await res.text().catch(() => 'Analysis failed');
+    throw new Error(err || 'Unable to analyse complaint');
   }
   return res.json();
 });
@@ -34,7 +35,10 @@ export const saveComplaint = createAsyncThunk('complaints/save', async (payload)
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   });
-  if (!res.ok) throw new Error('Unable to save complaint');
+  if (!res.ok) {
+    const err = await res.text().catch(() => 'Save failed');
+    throw new Error(err || 'Unable to save complaint');
+  }
   return res.json();
 });
 
@@ -136,7 +140,6 @@ const complaintsSlice = createSlice({
         state.complaints.unshift(action.payload);
         state.analysis = null;
         state.saveSuccess = true;
-        // Update stats totals
         if (state.stats) {
           state.stats.total += 1;
           state.stats.open += 1;

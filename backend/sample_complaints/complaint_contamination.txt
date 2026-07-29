@@ -1,46 +1,73 @@
 PHARMACEUTICAL COMPLAINT REPORT
-
 Date: 2026-07-20
-Complaint Reference: (To be assigned by manufacturer)
-Received Via: Email + Phone
+Channel: Email from pharmacy chain QA department
 
-REPORTER INFORMATION:
-Name: Dr. Anand Kapoor
-Organization: Apollo Pharmacy Chain (Regional Quality Manager)
-Contact: a.kapoor@apollorx.com | +91 98765 43210
+From:
+Dr. Anand Kapoor
+Head of Quality
+Apollo Pharmacy Chain (National Distribution)
 
-PRODUCT INFORMATION:
+To:
+Customer Quality Department
+NovaChem Pharmaceuticals Ltd.
+
+RE: POSSIBLE CROSS-CONTAMINATION – Amoxicillin Trihydrate Capsules 500mg – Batch AMX-2026-0198
+
+Dear Quality Assurance Team,
+
+We are writing to formally report a serious quality concern that was identified at one of our
+central distribution warehouses during routine pre-dispatch inspection.
+
+COMPLAINT DETAILS:
 Product Name: Amoxicillin Trihydrate Capsules 500mg
 Batch Number: AMX-2026-0198
-Manufacturer: PharmaCore API & FDF Ltd.
-Date of Manufacture: January 2026
-Date of Expiry: December 2028
-Pack Size: 10 x 10 capsules per box
+Manufacturing Date: May 2026
+Expiry Date: April 2028
+Quantity Affected: Approximately 500 capsule packs (250 units)
+Complaint Source: Pharmacy chain QA inspection
 
-COMPLAINT DESCRIPTION:
-During dispensing, our pharmacist at the Hyderabad branch noticed that the capsules from Batch AMX-2026-0198 appeared to have a distinctly different color than the standard product — the capsule body was light pink instead of the expected white.
+INCIDENT DESCRIPTION:
+During dispensing, our pharmacist at HealthPlus Branch 14, Mumbai, noticed that capsules
+from this batch had an unusual colour — light pink instead of the expected opaque white
+that is standard for Amoxicillin Trihydrate. Further, the powder inside the capsules appeared
+brownish-orange rather than the characteristic white/off-white colour.
 
-Upon further investigation across 3 additional boxes from the same batch purchased at our Pune and Bangalore branches, we identified the same anomaly. The capsule contents appeared brownish-orange rather than white/off-white powder, suggesting possible cross-contamination with another product.
+We immediately isolated all affected stock from Batch AMX-2026-0198 and sent samples to
+an external accredited laboratory for analysis.
 
-We sent 5 capsules to our empaneled external laboratory (Analytical Labs India, Hyderabad) for rapid testing. The preliminary HPLC analysis showed the presence of what appears to be a secondary compound peak that should not be present in a pure Amoxicillin formulation.
+LABORATORY FINDINGS (Preliminary):
+External HPLC analysis performed at ClinLabs India Pvt. Ltd. (NABL Accredited, Lab No. 2287)
+showed the presence of a secondary compound peak at a retention time that does NOT correspond
+to Amoxicillin Trihydrate, suggesting possible cross-contamination with another active
+pharmaceutical ingredient during manufacturing.
 
-SEVERITY ASSESSMENT: CRITICAL
-This is a potential cross-contamination incident. Amoxicillin is a beta-lactam antibiotic. Any contamination with non-beta-lactam compounds (or vice versa) poses a serious patient safety risk, including potential allergic reactions and therapeutic failure.
+SEVERITY ASSESSMENT:
+This is a CRITICAL quality and patient safety event. Amoxicillin is a beta-lactam antibiotic.
+Any cross-contamination with another API presents serious patient safety risks:
+- Potential allergic reactions if the contaminant is from a different drug class
+- Inadequate therapeutic effect due to reduced Amoxicillin potency
+- Risk of medication error if the visual appearance change goes unnoticed by end pharmacists
 
-ACTIONS TAKEN BY REPORTER:
-- All stock of Batch AMX-2026-0198 has been quarantined at all Apollo branches.
-- Approximately 2,400 boxes are held pending your investigation outcome.
-- External lab test report is available upon request.
-- No adverse patient outcomes have been reported to date, but we are monitoring.
+IMMEDIATE ACTIONS TAKEN BY APOLLO PHARMACY CHAIN:
+1. All stock of Batch AMX-2026-0198 quarantined across all 46 distribution points (National)
+2. Regulatory authority (CDSCO) and state drug controller notified (Complaint Ref: MH-ADR-2026-874)
+3. Investigation opened internally under reference APC-QA-2026-0720
+4. Prescribing physicians for all patients who received this batch being contacted
 
-REGULATORY NOTE:
-Given the nature of this complaint, Apollo Pharmacy management believes this may require regulatory reporting to CDSCO under Schedule M compliance. We request your confirmation within 48 hours.
+FORMAL REQUEST:
+1. Immediate acknowledgment and assignment of complaint number
+2. Batch retention sample testing by your internal QC and QA teams
+3. Root cause investigation including equipment cleaning validation and campaign manufacturing logs
+4. Determination if any other batches are potentially affected
+5. Field alert or voluntary recall initiation if systemic failure confirmed
+6. Written investigation report within 7 working days
 
-REQUESTED FROM MANUFACTURER:
-1. Immediate acknowledgment and complaint number
-2. Investigation report within 10 working days
-3. COA and in-process control data for Batch AMX-2026-0198
-4. Disposition guidance for quarantined stock
-5. Confirmation of regulatory reporting obligation
+This matter requires immediate escalation to your Quality Director. We are available for a
+conference call at your earliest convenience.
 
-This complaint is classified as CRITICAL / PATIENT SAFETY by our internal QMS.
+Regards,
+
+Dr. Anand Kapoor
+Head — Quality Assurance
+Apollo Pharmacy Chain | National Operations
+Tel: +91-22-4000-8800 | anand.kapoor@apollopharmacy.in

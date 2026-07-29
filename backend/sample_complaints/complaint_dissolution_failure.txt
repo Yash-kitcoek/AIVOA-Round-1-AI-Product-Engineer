@@ -1,0 +1,70 @@
+PHARMACEUTICAL COMPLAINT — DISSOLUTION FAILURE
+Date: 2026-07-15
+Channel: Email
+Priority: URGENT
+
+From: Ms. Priya Nair
+Title: Quality Manager
+Organization: MediTrade Distributors Pvt. Ltd.
+Email: quality@meditrade-distributors.com
+Phone: +91-80-3344-5566
+
+To: Customer Complaint Department
+NovaChem Pharmaceuticals Ltd.
+
+Subject: URGENT – Out-of-Specification Dissolution — Metformin HCl 500mg Tablets — Batch MT-2026-0342
+
+Dear Quality Assurance Team,
+
+We are writing to bring to your urgent attention a significant quality issue identified with your
+Metformin HCl 500mg Immediate Release Tablets, Batch Number MT-2026-0342.
+
+PRODUCT DETAILS:
+Product: Metformin HCl 500mg Tablets (Immediate Release)
+Batch Number: MT-2026-0342
+Manufacturing Date: March 2026
+Expiry Date: February 2028
+Quantity Received: 20,000 units
+Quantity Affected (estimated): 3,200 units (16%)
+Complaint Source: Hospital quality department
+
+COMPLAINT DETAILS:
+Our hospital client, City General Hospital (Bengaluru), flagged this batch after conducting
+routine dissolution testing per their incoming quality checks as per their QMS protocol.
+
+The dissolution results are as follows:
+- USP Apparatus II, 75 RPM, 900 mL phosphate buffer pH 6.8, 45 minutes
+- Specification: NLT 80% (Q)
+- Observed Result: ~52% dissolved at 45 minutes (OOS — Out of Specification)
+
+In addition to the dissolution failure, their pharmacist also observed physical defects:
+- Visible surface cracks on approximately 15% of tablets examined
+- Slight discolouration (yellowish tinge) on 5% of tablets
+
+CLINICAL SIGNIFICANCE:
+Metformin HCl is a first-line oral antidiabetic medication critical for Type 2 Diabetes
+management. A dissolution failure of this magnitude (52% vs NLT 80%) means significantly
+subtherapeutic drug exposure in patients, which may result in:
+- Inadequate blood glucose control
+- Risk of hyperglycaemic episodes
+- Potential for long-term diabetic complications
+
+ACTIONS ALREADY TAKEN BY OUR HOSPITAL CLIENT:
+1. Entire Batch MT-2026-0342 stock quarantined at City General Hospital
+2. Alternate supplier stock arranged to ensure continuity of patient care
+3. Incident logged in their pharmacovigilance system
+
+OUR REQUEST:
+1. Acknowledge receipt of this complaint and provide a formal complaint number within 24 hours
+2. Investigate root cause — potential areas: granulation parameters, binder concentration,
+   compression force settings, or raw material variability
+3. Conduct testing of retained reference samples from Batch MT-2026-0342
+4. Confirm whether other distributed batches may be impacted
+5. Initiate market recall if investigation confirms systemic failure
+6. Provide written CAPA response within 10 working days
+
+We would appreciate your urgent attention to this matter given the direct patient safety implications.
+
+Sincerely,
+Ms. Priya Nair
+Quality Manager | MediTrade Distributors Pvt. Ltd.

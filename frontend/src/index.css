@@ -1187,3 +1187,425 @@ h3 { font-size: 1rem; font-weight: 700; }
 .nav-item[title] {
   position: relative;
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   NEW COMPLAINT VIEW — Reference UI layout
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* Two-column grid: form (left) + copilot (right) */
+.new-complaint-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 1200px) {
+  .new-complaint-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Complaint form card ── */
+.complaint-form-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.complaint-form-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.complaint-form-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.complaint-form-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+/* Pending Triage badge */
+.pending-triage-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--warning);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Form section numbered header */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.form-section:last-of-type {
+  border-bottom: none;
+}
+
+.form-section-number {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+/* Awaiting extraction input style */
+.input-awaiting,
+input.input-awaiting,
+textarea.input-awaiting,
+select.input-awaiting {
+  color: var(--text-muted) !important;
+  font-style: italic;
+  border-color: rgba(99, 140, 255, 0.1) !important;
+  background: rgba(10, 18, 42, 0.5) !important;
+}
+
+input.input-awaiting::placeholder,
+textarea.input-awaiting::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Input with unit suffix (e.g. "units") */
+.input-suffix-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-suffix-wrap input {
+  padding-right: 48px;
+  width: 100%;
+}
+
+.input-suffix {
+  position: absolute;
+  right: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* Reset + Save row */
+.form-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 8px;
+}
+
+/* ── AI Copilot Panel ── */
+.ai-copilot-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 24px;
+}
+
+/* Copilot card header */
+.copilot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 4px;
+}
+
+.copilot-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.copilot-icon {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.copilot-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.beta-badge {
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+/* Upload zone — reference style */
+.upload-zone-ref {
+  border: 2px dashed var(--border-input);
+  border-radius: var(--radius-md);
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: rgba(10, 18, 42, 0.4);
+}
+
+.upload-zone-ref:hover,
+.upload-zone-ref.drag-over {
+  border-color: var(--primary);
+  background: rgba(59, 130, 246, 0.06);
+  color: var(--text-primary);
+}
+
+.upload-cloud-icon {
+  font-size: 2rem;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.upload-accent { color: var(--primary); font-weight: 600; }
+.upload-hint   { color: var(--text-muted); font-size: 0.78rem; }
+
+/* OR divider */
+.copilot-or-divider {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  position: relative;
+  margin: 4px 0;
+}
+
+.copilot-or-divider::before,
+.copilot-or-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: var(--border-subtle);
+}
+.copilot-or-divider::before { left: 0; }
+.copilot-or-divider::after  { right: 0; }
+
+/* Paste button */
+.copilot-paste-btn {
+  border: 1px dashed var(--border-input) !important;
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.82rem;
+}
+
+.copilot-paste-btn:hover {
+  border-color: var(--primary) !important;
+  color: var(--primary-light) !important;
+  background: rgba(59,130,246,0.05) !important;
+}
+
+/* Supported formats info */
+.supported-formats {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  background: rgba(16,185,129,0.06);
+  border: 1px solid rgba(16,185,129,0.15);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Extraction Progress ── */
+.extraction-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  background: rgba(59,130,246,0.04);
+  border: 1px solid rgba(59,130,246,0.1);
+  border-radius: var(--radius-md);
+}
+
+.extraction-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.extraction-bar-track {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: rgba(59,130,246,0.1);
+  overflow: hidden;
+}
+
+.extraction-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  box-shadow: 0 0 8px rgba(59,130,246,0.5);
+}
+
+/* ── AI Assistant Chat ── */
+.ai-assistant-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 14px;
+  margin-top: 4px;
+}
+
+.ai-assistant-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 160px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.chat-bubble {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+}
+
+.chat-bubble.assistant {
+  background: rgba(59,130,246,0.08);
+  border: 1px solid rgba(59,130,246,0.12);
+  color: var(--text-primary);
+}
+
+.chat-bubble.user {
+  background: rgba(99,102,241,0.08);
+  border: 1px solid rgba(99,102,241,0.15);
+  color: var(--text-secondary);
+  flex-direction: row-reverse;
+}
+
+.chat-avatar {
+  flex-shrink: 0;
+  color: var(--primary);
+  font-size: 0.85rem;
+  margin-top: 1px;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  outline: none;
+  font-family: inherit;
+}
+
+.chat-input:focus {
+  border-color: var(--primary);
+}
+
+.chat-input::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.chat-send-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.chat-send-btn:hover:not(:disabled) {
+  background: var(--primary-dark);
+}
+
+.chat-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.chat-disclaimer {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-align: center;
+  font-style: italic;
+}
+
+/* ── Analysis badges row ── */
+.analysis-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
