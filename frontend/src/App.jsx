@@ -14,67 +14,257 @@ import {
   updateComplaint,
 } from './features/complaints/complaintsSlice';
 
-// ─── Sample complaint texts ────────────────────────────────────────────────
+// ─── Sample complaint texts ─────────────────────────────────────────────────
 const SAMPLES = {
   dissolution: `From: quality@meditrade-distributors.com
 Date: 2026-07-15
-Subject: URGENT – Dissolution Failure – Metformin HCl 500mg Tablets – Batch MT-2026-0342
+Subject: URGENT – Out-of-Specification Dissolution – Metformin HCl 500mg Tablets – Batch MT-2026-0342
 
 Dear Quality Assurance Team,
 
 Product: Metformin HCl 500mg Tablets (Immediate Release)
 Batch Number: MT-2026-0342
 Manufacturing Date: March 2026
+Expiry Date: February 2028
 Quantity Affected: 3,200 units
+Originating Site: NovaChem Plant A, Hyderabad
+Customer: City General Hospital, Bengaluru
+Country: India
 
-Our hospital client City General Hospital reported significant dissolution profile deviation.
-At 45 minutes the dissolution was ~52%, against the specification of NLT 80% (Q).
-Visible cracks on ~15% of tablets were also noted.
+Our hospital client City General Hospital conducted incoming quality testing per their QMS protocol.
+Dissolusion results (USP App II, 75 RPM, 900 mL pH 6.8 phosphate buffer, 45 min):
+  Specification: NLT 80% (Q)
+  Observed: ~52% — OUT OF SPECIFICATION
 
-Metformin is critical for Type 2 Diabetes management. Subtherapeutic dissolution may
-result in inadequate blood glucose control.
+Additional defects observed:
+  - Visible surface cracks on ~15% of tablets examined
+  - Slight yellowish discolouration on 5% of tablets
 
-Reporter: Ms. Priya Nair, MediTrade Distributors Pvt. Ltd.
-Customer Type: Distributor`,
+Clinical significance: Metformin HCl is a first-line oral antidiabetic for Type 2 Diabetes.
+Subtherapeutic dissolution means inadequate blood glucose control — risk of hyperglycaemia.
+
+Actions taken: Batch quarantined at hospital. Alternate stock sourced.
+
+Request:
+1. Acknowledge complaint and issue formal complaint number within 24 hours.
+2. Investigate root cause — granulation parameters, binder concentration, compression force.
+3. Confirm whether other distributed batches may be impacted.
+4. Provide written CAPA response within 10 working days.
+
+Reporter: Ms. Priya Nair, Quality Manager
+Organisation: MediTrade Distributors Pvt. Ltd.
+Email: quality@meditrade-distributors.com`,
 
   contamination: `PHARMACEUTICAL COMPLAINT REPORT
 Date: 2026-07-20
-Channel: Email
+Channel: Email — Pharmacy Chain QA Department
+
+From: Dr. Anand Kapoor, Head of Quality, Apollo Pharmacy Chain
+To: Customer Quality Department, NovaChem Pharmaceuticals Ltd.
+RE: POSSIBLE CROSS-CONTAMINATION – Amoxicillin Trihydrate Capsules 500mg – Batch AMX-2026-0198
 
 Product Name: Amoxicillin Trihydrate Capsules 500mg
 Batch Number: AMX-2026-0198
-Expiry Date: 2028-01
-Quantity Affected: 500 units
+Manufacturing Date: May 2026
+Expiry Date: April 2028
+Quantity Affected: ~500 capsule packs (250 units)
+Country: India
 
-During dispensing, pharmacist noticed capsules from this batch had different colour —
-light pink instead of expected white. Contents appeared brownish-orange instead of
-white/off-white powder, suggesting possible cross-contamination.
+Incident Description:
+During dispensing at HealthPlus Branch 14, Mumbai, pharmacist noticed capsules had unusual
+colour — light pink instead of expected opaque white. Contents appeared brownish-orange
+rather than characteristic white/off-white powder.
 
-External lab HPLC analysis shows presence of secondary compound peak not expected
-in pure Amoxicillin. SEVERITY: CRITICAL.
+Laboratory Findings (Preliminary):
+External HPLC analysis at ClinLabs India Pvt. Ltd. (NABL Accredited, Lab No. 2287) showed
+presence of a secondary compound peak NOT corresponding to Amoxicillin Trihydrate —
+suggesting cross-contamination with another active pharmaceutical ingredient (API).
 
-Amoxicillin is a beta-lactam antibiotic. Cross-contamination poses serious patient
-safety risk including allergic reactions and treatment failure.
+Severity: CRITICAL — Patient safety risk
+Amoxicillin is a beta-lactam antibiotic. Cross-contamination may cause:
+  - Allergic reactions if contaminated with penicillin-class or other drugs
+  - Inadequate therapeutic effect due to reduced Amoxicillin potency
+  - Medication error if visual change goes unnoticed by pharmacists
 
-Reporter: Dr. Anand Kapoor, Apollo Pharmacy Chain`,
+Actions Taken:
+  - All stock of Batch AMX-2026-0198 quarantined across 46 distribution points nationally
+  - CDSCO and state drug controller notified (Ref: MH-ADR-2026-874)
 
-  labeling: `CUSTOMER COMPLAINT – LABELING ERROR
+Formal Request:
+  1. Immediate acknowledgment within 24 hours
+  2. Batch retention sample testing by internal QC
+  3. Root cause investigation: equipment cleaning validation, campaign manufacturing logs
+  4. Determine if other batches are affected
+  5. Initiate field alert or voluntary recall if systemic failure confirmed
+
+Reporter: Dr. Anand Kapoor | Apollo Pharmacy Chain
+Email: anand.kapoor@apollopharmacy.in`,
+
+  labeling: `CUSTOMER COMPLAINT – LABELING / PACKAGING ERROR
 Date: 2026-07-22
-Received: Written complaint letter
+Received via: Written complaint letter
 
 Product: Atorvastatin Calcium Tablets
-Expected Strength: 20mg  Batch: ATV-2026-0277
-Expiry Date: 2027-09
+Expected Strength: 20mg
+Batch Number: ATV-2026-0277
+Expiry Date: September 2027
+Quantity Affected: 5 packs (150 tablets)
+Customer: HealthFirst Retail Pharmacy, Bengaluru
+Country: India
 
-Pharmacist noticed tablets inside blister were larger than normal. Reverse foil
-printed ATORVA 40 (40mg) while outer carton read Atorvastatin 20mg.
-All 5 checked boxes from same batch showed same discrepancy.
+Complaint Details:
+Pharmacist Mr. Rajesh Mehta noticed tablets inside the blister packs were larger than expected
+for a 20mg formulation. Investigation revealed:
+  - The reverse foil printed: ATORVA 40 (40mg strength)
+  - The outer carton label read: Atorvastatin 20mg
+All 5 inspected packs from the same batch showed the same discrepancy.
 
-Two patients may have received incorrect dose (2x overdose). Atorvastatin overdose
-can cause myopathy, rhabdomyolysis, liver toxicity.
+Patient Safety Impact:
+Two patients had already been dispensed this batch. Both may have received 2x their
+prescribed dose (40mg instead of 20mg) for up to 7 days.
+Atovastatin overdose risk: myopathy, rhabdomyolysis, elevated liver enzymes, liver toxicity.
 
-Reporter: Mr. Rajesh Mehta, HealthFirst Retail Pharmacy, Bengaluru`,
+Complaint Source: Retail pharmacy
+Reporter: Mr. Rajesh Mehta, Pharmacist
+Organisation: HealthFirst Retail Pharmacy, MG Road, Bengaluru
+Contact: rajesh.mehta@healthfirst.in`,
+
+  adverse_event: `PHARMACOVIGILANCE / ADVERSE EVENT COMPLAINT
+Date: 2026-07-25
+Channel: Physician written report
+
+Product Name: Ibuprofen Oral Suspension 100mg/5mL
+Batch Number: IBU-2026-0311
+Manufacturing Date: April 2026
+Expiry Date: March 2028
+Quantity Involved: 1 bottle (100mL)
+Customer: Dr. Fatima Sheikh, Paediatric Department, Rainbow Children's Hospital
+Country: India
+
+Adverse Event Description:
+A 4-year-old male patient (weight 16 kg) was prescribed Ibuprofen 100mg/5mL suspension for
+febrile seizure management. Correct dose (5 mL = 100mg) was administered as per prescription.
+Within 2 hours of administration, the patient developed:
+  - Urticarial rash over trunk and arms
+  - Mild facial oedema
+  - Increased irritability
+
+The patient was managed with antihistamine and recovered within 6 hours.
+
+Clinical Assessment by Reporting Physician:
+Likely allergic reaction — causality assessment: POSSIBLE (WHO-UMC scale).
+The patient had no prior allergy history to Ibuprofen or NSAIDs.
+Physician suspects possible formulation excipient (e.g., artificial colouring, sodium benzoate)
+may have triggered the reaction.
+
+Severity: HIGH — adverse event in a paediatric patient
+Regulatory Reportable: Yes (CDSCO ADR reporting within 15 days required)
+
+Actions Taken:
+  - Batch sample retained and sent to QC for analysis
+  - Patient details documented in pharmacovigilance database
+  - Suspected ADR filed with PvPI (Ref: PVPI-2026-04511)
+
+Reporter: Dr. Fatima Sheikh
+Hospital: Rainbow Children's Hospital, Hyderabad
+Department: Paediatrics`,
+
+  stability: `STABILITY / SHELF-LIFE COMPLAINT
+Date: 2026-07-18
+Channel: Email — Importer QA Department
+
+From: Ms. Sunita Rao, Quality Assurance Manager
+Organisation: PharmaExport Gulf LLC, UAE
+To: Export Quality Team, NovaChem Pharmaceuticals Ltd.
+Subject: Premature Degradation – Azithromycin 500mg Tablets – Batch AZI-2026-0155
+
+Product Name: Azithromycin 500mg Tablets
+Batch Number: AZI-2026-0155
+Manufacturing Date: February 2026
+Expiry Date: January 2028
+Quantity Received: 50,000 tablets (500 packs × 100 tablets)
+Quantity Affected: ~8,000 tablets (16%)
+Originating Site: NovaChem Export Facility, Vizag
+Country: UAE (imported product)
+
+Complaint Description:
+During routine stability monitoring at our Gulf distribution centre (ambient: 30°C/65% RH),
+our QC team identified the following anomalies in Batch AZI-2026-0155 at the 6-month
+stability check point (July 2026):
+
+  1. Appearance: ~16% of tablets showed brown discolouration and surface mottling
+  2. Assay: 87.2% (Specification: 95.0%–105.0%) — FAIL
+  3. Related Substances: Unknown impurity at 0.42% (Specification: NMT 0.20%) — FAIL
+  4. Dissolution: 71% at 30 min (Specification: NLT 80%) — FAIL
+
+This batch was received 6 months ago with only 24 months shelf life. It has failed stability
+testing at only 25% of its claimed shelf-life. The degradation pattern is inconsistent with
+normal API degradation and may indicate a cold-chain excursion or packaging barrier failure.
+
+Impact: Azithromycin is a critical antibiotic used for respiratory and STI infections.
+Sub-potent product reaching patients poses serious treatment failure risk.
+
+Request:
+  1. Issue formal complaint acknowledgment within 48 hours.
+  2. Review temperature data loggers for this export shipment.
+  3. Test retention samples from the same batch under ICH Zone IVb conditions.
+  4. Perform packaging integrity testing — assess foil barrier properties.
+  5. Initiate market recall if shelf-life claim cannot be supported.
+  6. Investigate root cause: API quality, manufacturing process, packaging, or cold chain.
+
+Reporter: Ms. Sunita Rao, QA Manager
+Organisation: PharmaExport Gulf LLC
+Email: sunita.rao@pharmaexport-gulf.ae`,
 };
+
+// ─── Predefined prompt metadata (for quick-select cards) ──────────────────────
+const PREDEFINED_PROMPTS = [
+  {
+    key: 'dissolution',
+    icon: '💊',
+    label: 'Dissolution Failure',
+    tag: 'Physical/Chemical',
+    severity: 'High',
+    severityCls: 'badge-high',
+    desc: 'Metformin HCl OOS dissolution result reported by hospital client',
+  },
+  {
+    key: 'contamination',
+    icon: '⚗️',
+    label: 'Cross-Contamination',
+    tag: 'Contamination',
+    severity: 'Critical',
+    severityCls: 'badge-high',
+    desc: 'Amoxicillin capsules with foreign API detected — HPLC confirmed',
+  },
+  {
+    key: 'labeling',
+    icon: '🏷️',
+    label: 'Labeling Error',
+    tag: 'Labeling/Packaging',
+    severity: 'Medium',
+    severityCls: 'badge-medium',
+    desc: 'Atorvastatin 20mg carton filled with 40mg tablets — 2× dose dispensed',
+  },
+  {
+    key: 'adverse_event',
+    icon: '🚨',
+    label: 'Adverse Event',
+    tag: 'Patient Safety',
+    severity: 'High',
+    severityCls: 'badge-high',
+    desc: 'Ibuprofen suspension — allergic reaction in paediatric patient',
+  },
+  {
+    key: 'stability',
+    icon: '📉',
+    label: 'Premature Degradation',
+    tag: 'Stability',
+    severity: 'High',
+    severityCls: 'badge-medium',
+    desc: 'Azithromycin export batch failed assay, dissolution & purity tests at month 6',
+  },
+];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
 function getBadgeClass(value, type) {
@@ -712,7 +902,29 @@ function NewComplaintView({ analysis, loading, error, saveSuccess, onClearSave }
               </div>
             )}
 
-            <div className="copilot-or-divider">OR</div>
+            {/* ── Quick Test Prompts ── */}
+            <div className="quick-prompts-section">
+              <div className="quick-prompts-label">⚡ QUICK TEST PROMPTS — load sample complaint instantly</div>
+              <div className="quick-prompts-grid">
+                {PREDEFINED_PROMPTS.map((p) => (
+                  <button
+                    key={p.key}
+                    className="quick-prompt-card"
+                    onClick={() => useSample(p.key)}
+                    title={p.desc}
+                  >
+                    <div className="qp-top">
+                      <span className="qp-icon">{p.icon}</span>
+                      <span className={`badge ${p.severityCls} qp-badge`}>{p.severity}</span>
+                    </div>
+                    <div className="qp-label">{p.label}</div>
+                    <div className="qp-tag">{p.tag}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="copilot-or-divider">OR PASTE / UPLOAD</div>
 
             {/* Paste text button / textarea */}
             {!pasteMode ? (
@@ -725,16 +937,12 @@ function NewComplaintView({ analysis, loading, error, saveSuccess, onClearSave }
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   placeholder="Paste complaint email, letter, or description here…"
-                  rows={7}
+                  rows={6}
                   style={{ resize: 'vertical' }}
                 />
-                <div className="row" style={{ gap: 8 }}>
-                  <button className="btn btn-ghost btn-sm" onClick={() => { setPasteMode(false); setText(''); }}>✕ Cancel</button>
-                  <div className="sample-links" style={{ marginLeft: 'auto' }}>
-                    <button className="sample-link" onClick={() => useSample('dissolution')}>💊 Dissolution</button>
-                    <button className="sample-link" onClick={() => useSample('contamination')}>⚠️ Contamination</button>
-                    <button className="sample-link" onClick={() => useSample('labeling')}>🏷️ Labeling</button>
-                  </div>
+                <div className="row" style={{ gap: 6 }}>
+                  <button className="btn btn-ghost btn-sm" onClick={() => { setPasteMode(false); setText(''); }}>✕ Close</button>
+                  <span className="text-xs text-muted" style={{ marginLeft: 'auto', alignSelf: 'center' }}>Use quick prompts above to load a sample</span>
                 </div>
               </div>
             )}

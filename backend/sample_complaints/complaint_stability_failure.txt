@@ -1,0 +1,48 @@
+STABILITY / SHELF-LIFE COMPLAINT
+Date: 2026-07-18
+Channel: Email — Importer QA Department
+
+From: Ms. Sunita Rao, Quality Assurance Manager
+Organisation: PharmaExport Gulf LLC, UAE
+To: Export Quality Team, NovaChem Pharmaceuticals Ltd.
+Subject: Premature Degradation – Azithromycin 500mg Tablets – Batch AZI-2026-0155
+
+Product Name: Azithromycin 500mg Tablets
+Batch Number: AZI-2026-0155
+Manufacturing Date: February 2026
+Expiry Date: January 2028
+Quantity Received: 50,000 tablets (500 packs × 100 tablets)
+Quantity Affected: ~8,000 tablets (16%)
+Originating Site: NovaChem Export Facility, Vizag
+Country: UAE (imported product)
+
+Complaint Description:
+During routine stability monitoring at our Gulf distribution centre (ambient: 30°C/65% RH),
+our QC team identified the following anomalies in Batch AZI-2026-0155 at the 6-month
+stability checkpoint (July 2026):
+
+  1. Appearance: ~16% of tablets showed brown discolouration and surface mottling
+  2. Assay: 87.2% (Specification: 95.0%–105.0%) — FAIL
+  3. Related Substances: Unknown impurity at 0.42% (Specification: NMT 0.20%) — FAIL
+  4. Dissolution: 71% at 30 min (Specification: NLT 80%) — FAIL
+
+This batch was received 6 months ago with 24 months shelf life. It has failed stability
+testing at only 25% of its claimed shelf-life. The degradation pattern is inconsistent with
+normal API degradation and may indicate a cold-chain excursion or packaging barrier failure.
+
+Impact:
+Azithromycin is a critical antibiotic used for respiratory infections, community-acquired
+pneumonia, and STIs. Sub-potent product reaching patients poses serious treatment failure risk.
+
+Request:
+  1. Issue formal complaint acknowledgment within 48 hours.
+  2. Review temperature data loggers for this export shipment.
+  3. Test retention samples from the same batch under ICH Zone IVb conditions.
+  4. Perform packaging integrity testing — assess foil barrier properties.
+  5. Initiate market recall if shelf-life claim cannot be supported.
+  6. Investigate root cause: API quality, manufacturing process, packaging, or cold chain.
+  7. Provide written investigation report and CAPA within 14 working days.
+
+Reporter: Ms. Sunita Rao, QA Manager
+Organisation: PharmaExport Gulf LLC
+Email: sunita.rao@pharmaexport-gulf.ae

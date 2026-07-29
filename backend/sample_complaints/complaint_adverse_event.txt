@@ -1,0 +1,39 @@
+PHARMACOVIGILANCE / ADVERSE EVENT COMPLAINT
+Date: 2026-07-25
+Channel: Physician written report
+
+Product Name: Ibuprofen Oral Suspension 100mg/5mL
+Batch Number: IBU-2026-0311
+Manufacturing Date: April 2026
+Expiry Date: March 2028
+Quantity Involved: 1 bottle (100mL)
+Customer: Dr. Fatima Sheikh, Paediatric Department, Rainbow Children's Hospital
+Country: India
+
+Adverse Event Description:
+A 4-year-old male patient (weight 16 kg) was prescribed Ibuprofen 100mg/5mL suspension for
+febrile seizure management. Correct dose (5 mL = 100mg) was administered as per prescription.
+Within 2 hours of administration, the patient developed:
+  - Urticarial rash over trunk and arms
+  - Mild facial oedema
+  - Increased irritability
+
+The patient was managed with antihistamine and recovered within 6 hours.
+
+Clinical Assessment by Reporting Physician:
+Likely allergic reaction — causality assessment: POSSIBLE (WHO-UMC scale).
+The patient had no prior allergy history to Ibuprofen or NSAIDs.
+Physician suspects possible formulation excipient (e.g., artificial colouring, sodium benzoate)
+may have triggered the reaction.
+
+Severity: HIGH — adverse event in a paediatric patient
+Regulatory Reportable: Yes (CDSCO ADR reporting within 15 days required)
+
+Actions Taken:
+  - Batch sample retained and sent to QC for analysis
+  - Patient details documented in pharmacovigilance database
+  - Suspected ADR filed with PvPI (Ref: PVPI-2026-04511)
+
+Reporter: Dr. Fatima Sheikh
+Hospital: Rainbow Children's Hospital, Hyderabad
+Department: Paediatrics

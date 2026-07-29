@@ -1609,3 +1609,82 @@ textarea.input-awaiting::placeholder {
   margin-bottom: 12px;
 }
 
+/* ── Quick Test Prompts ── */
+.quick-prompts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quick-prompts-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.quick-prompts-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+@media (max-width: 480px) {
+  .quick-prompts-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.quick-prompt-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 9px 8px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.quick-prompt-card:hover {
+  border-color: var(--primary);
+  background: rgba(59, 130, 246, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
+}
+
+.qp-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.qp-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.qp-badge {
+  font-size: 0.55rem !important;
+  padding: 2px 5px !important;
+  flex-shrink: 0;
+}
+
+.qp-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.qp-tag {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
